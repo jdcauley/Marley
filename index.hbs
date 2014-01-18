@@ -1,0 +1,40 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! The big featured header on the homepage, with the site logo and description }}
+
+
+{{! The main content area on the homepage }}
+<main class="container content" role="main">
+  <div class="row">
+  {{! Each post will be output using this markup }}
+  {{#foreach posts}}
+    <section class="col-md-8 col-md-offset-2 excerpt-wrap {{post_class}}">
+      <div class="post-excerpt">
+        <h2 class="post-title"><a href="{{url}}">{{{title}}}</a></h2>
+        <time class="pub-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format='MMMM DD, YYYY'}}</time> 
+          {{#if tags}}on {{tags separator=" | "}}{{/if}}
+        <div class="btn-group">
+          <a class="dropdown-toggle share-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-share-alt"></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a class="icon-twitter" href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><span>Twitter</span></a></li>
+            <li><a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><span>Facebook</span></a></li>
+            <li><a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><span>Google+</span></a></li>
+          </ul>
+        </div>
+        <p>{{excerpt}}&hellip;</p>
+        <h4><a class="{{url}}" href="{{url}}">Read</a></h4>
+      </div>
+    </section>
+  {{/foreach}}
+  </div>
+  <section class="row">
+    <div class="col-md-8 col-md-offset-2">
+      {{!! After all the posts, we have the previous/next pagination links }}
+      {{pagination}}
+    </div>
+  </section>
+
+</main>

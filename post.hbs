@@ -1,0 +1,51 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+<main class="container content" role="main">
+  <a class="back" href="{{@blog.url}}" title="{{@blog.title}}"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <div class="row">
+    <article class="col-md-8 col-md-offset-2 {{post_class}}">
+        {{! Everything inside the #post tags pulls data from the post }}
+        {{#post}}
+
+      <header class="post-header">
+        <h1 class="post-title">{{{title}}}</h1>
+        <time class="pub-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format='MMMM DD, YYYY'}}</time> 
+          {{#if tags}}on {{tags separator=" | "}}{{/if}}
+        <div class="btn-group">
+          <a class="dropdown-toggle share-icon" data-toggle="dropdown"><span class="glyphicon glyphicon-share-alt"></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a class="icon-twitter" href="http://twitter.com/share?text={{title}}&url={{url absolute="true"}}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><span>Twitter</span></a></li>
+            <li><a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><span>Facebook</span></a></li>
+            <li><a class="icon-google-plus" href="https://plus.google.com/share?url={{url absolute="true"}}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><span>Google+</span></a></li>
+          </ul>
+        </div>
+      </header>
+      <div class="post-content">
+        {{content}}
+      </div>
+      <footer class="post-footer">
+        <div class="row">
+      {{#if @blog.logo}}
+          <div class="col-sm-3">
+            <a id="blog-logo" class="logo-wrap" href="{{@blog.url}}"><img class="blog-logo" src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+          </div>
+      {{#if author}}
+          <div class="col-sm-9">
+            <div class="author">
+              <h4><a href="http://twitter.com/jdcauley" target="_blank">{{author.name}}</a></h4>
+              <p>{{author.bio}}</p>
+            </div>
+          </div>
+      {{/if}}
+        </div>
+      </footer>
+    
+    <div id="disqus_thread" class="comments"></div>
+    </article>
+    {{/post}}
+  </div>
+</main>
+

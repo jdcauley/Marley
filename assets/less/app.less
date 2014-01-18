@@ -1,0 +1,54 @@
+@import "bootstrap/bootstrap.less";
+
+/* Variables */
+
+@brand-secondary: #173656;
+
+/* Mixins */
+
+.round{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+/* HTML */
+
+img{
+  max-width: 100%;
+  height: auto;
+}
+/* Header */
+
+.header-image{
+  color: #fff;
+  height: 220px;
+  background-size: 100%;
+  background-color: @brand-secondary;
+  background-position: center center;
+  text-align: center;
+  a{
+    color: @brand-primary;
+    font-weight: 200;
+  }
+  h2{
+    text-align: right;
+    .hidden-xs;
+  }
+}
+.back{
+  font-size: 20px;
+  margin-top: 20px;
+  .center;
+}
+@media (min-width: @screen-sm) { }
+
+@media (min-width: @screen-md) { }
+
+@media (min-width: @screen-lg) { }
